@@ -4,8 +4,12 @@ export class Negociacao {
         this._quantidade = _quantidade;
         this._valor = _valor;
     }
+    /**Programação defensiva
+     * Para evitar utilizar uma função do objeto Date
+     */
     get data() {
-        return this._data;
+        const data = new Date(this._data.getTime());
+        return data;
     }
     get quantidade() {
         return this._quantidade;
