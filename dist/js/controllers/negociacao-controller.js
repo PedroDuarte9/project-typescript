@@ -6,9 +6,21 @@ export class NegociacaoController {
         this.valor = document.querySelector('#valor');
     }
     adiciona() {
-        let dataParseada = Date.parse(this.data.value);
-        let dataFormatada = new Date(dataParseada).toDateString();
-        const negociacao = new Negociacao(dataFormatada, Number.parseInt(this.quantidade.value), Number.parseFloat(this.valor.value));
+        const negociacao = this.criaNegociacao();
         console.log(negociacao);
+        this.limpaformulario();
+    }
+    criaNegociacao() {
+        const expReg = /-/g;
+        const data = new Date(this.data.value.replace(expReg, ','));
+        const quantidade = parseInt(this.quantidade.value);
+        const valor = parseFloat(this.valor.value);
+        return new Negociacao(data, quantidade, valor);
+    }
+    limpaformulario() {
+        this.data.value = '';
+        this.quantidade.value = '';
+        this.valor.value = '';
+        this.data.focus();
     }
 }
