@@ -1,6 +1,7 @@
 import { Negociacoes } from './../models/negociacoes.js';
 
 import { Negociacao } from "../models/negociacao.js";
+import { NegociacoesView } from '../views/negociacoes-view.js';
 
 export class NegociacaoController{
 
@@ -8,17 +9,20 @@ export class NegociacaoController{
     private quantidade:HTMLInputElement;
     private valor:HTMLInputElement;
     private negociacoes = new Negociacoes();
+    private negociacaoView = new NegociacoesView('#tabela'); //Aqui é criado uma instância da classe que tem a tabela, e por parâmetros passamos o id do index.html o pra monstar a tabela dinamicamente
+
 
     constructor(){
         this.data = document.querySelector('#data');
         this.quantidade = document.querySelector('#quantidade');
         this.valor = document.querySelector('#valor');
+        this.negociacaoView.update(this.negociacoes); //Aqui é chamado o método para renderizar a criação da tabela
     }
 
     adiciona():void{
         const negociacao = this.criaNegociacao();
         this.negociacoes.adiciona(negociacao);
-        console.log(this.negociacoes.lista())
+        this.negociacaoView.update(this.negociacoes)
         console.log(negociacao);
         this.limpaformulario();
     }

@@ -7,3 +7,4 @@ form.addEventListener('submit', elemento => {
     elemento.preventDefault();
     controllerNegociacao.adiciona();
 })
+
