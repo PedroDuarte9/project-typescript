@@ -22,7 +22,7 @@ export class NegociacoesView{
                 ${model.lista().map(item => {
                     return `
                         <tr>
-                            <td>?</td>
+                            <td>${new Intl.DateTimeFormat().format(item.data)}</td>
                             <td>${item.quantidade}</td>
                             <td>${item.valor}</td>
                         </tr>
@@ -30,12 +30,13 @@ export class NegociacoesView{
                 })}
             </tbody>
         </table>
-        `
+        `;
     }
-     
+      
     //Aqui foi criado um método onde o elemento através do metodo innerHTML irá receber o template que foi criado acima, e emostrará dinamenicamente na tela.
     update(model: Negociacoes) : void {
         const template = this.template(model)
+        console.log(template)
         this.elemento.innerHTML = template;
     }
 }
