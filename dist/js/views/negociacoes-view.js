@@ -14,20 +14,17 @@ export class NegociacoesView extends View {
                 ${model.lista().map(item => {
             return `
                         <tr>
-                            <td>${new Intl.DateTimeFormat().format(item.data)}</td>
+                            <td>${this.formatarData(item.data)}</td>
                             <td>${item.quantidade}</td>
                             <td>${item.valor}</td>
                         </tr>
                     `;
-        })}
+        }).join('')}
             </tbody>
         </table>
         `;
     }
-    //Aqui foi criado um método onde o elemento através do metodo innerHTML irá receber o template que foi criado acima, e emostrará dinamenicamente na tela.
-    update(model) {
-        const template = this.template(model);
-        console.log(template);
-        this.elemento.innerHTML = template;
+    formatarData(data) {
+        return new Intl.DateTimeFormat().format(data);
     }
 }

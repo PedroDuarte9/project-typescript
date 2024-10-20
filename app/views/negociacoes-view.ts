@@ -19,15 +19,19 @@ export class NegociacoesView extends View<Negociacoes>{
                 ${model.lista().map(item => {
                     return `
                         <tr>
-                            <td>${new Intl.DateTimeFormat().format(item.data)}</td>
+                            <td>${this.formatarData(item.data)}</td>
                             <td>${item.quantidade}</td>
                             <td>${item.valor}</td>
                         </tr>
                     `;
-                })}
+                }).join('')}
             </tbody>
         </table>
         `;
+    }
+
+    private formatarData(data:Date){
+        return new Intl.DateTimeFormat().format(data);
     }
       
 }
