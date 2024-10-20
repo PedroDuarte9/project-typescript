@@ -1,12 +1,9 @@
 import { NegociacaoController } from "../controllers/negociacao-controller.js"
 import { Negociacoes } from "../models/negociacoes.js";
+import { View } from "./view.js";
 
-export class NegociacoesView{
-    private elemento: HTMLElement; // Aqui ficará o elemento dessa classe que irá receber o seletor da pagina index.html
-
-   constructor(seletor: string){    
-        this.elemento = document.querySelector(seletor); // A partir do nosso elemento, faremos um construtor que recebe por parâmetro um seletor css quando criamos uma instância do objeto na classe controller
-   }
+export class NegociacoesView extends View{
+    
 
     template(model : Negociacoes):string {
     return  `

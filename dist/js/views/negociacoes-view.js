@@ -1,7 +1,5 @@
-export class NegociacoesView {
-    constructor(seletor) {
-        this.elemento = document.querySelector(seletor); // A partir do nosso elemento, faremos um construtor que recebe por parâmetro um seletor css quando criamos uma instância do objeto na classe controller
-    }
+import { View } from "./view.js";
+export class NegociacoesView extends View {
     template(model) {
         return `
         <table class="table table-dark table-hover">
