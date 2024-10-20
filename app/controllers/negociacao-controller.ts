@@ -2,6 +2,7 @@ import { Negociacoes } from './../models/negociacoes.js';
 
 import { Negociacao } from "../models/negociacao.js";
 import { NegociacoesView } from '../views/negociacoes-view.js';
+import { MensagemView } from '../views/mensagem-view.js';
 
 export class NegociacaoController{
 
@@ -10,6 +11,7 @@ export class NegociacaoController{
     private valor:HTMLInputElement;
     private negociacoes = new Negociacoes();
     private negociacaoView = new NegociacoesView('#tabela'); //Aqui é criado uma instância da classe que tem a tabela, e por parâmetros passamos o id do index.html o pra monstar a tabela dinamicamente
+    private mensagemView = new MensagemView("#mensagemView");
 
 
     constructor(){
@@ -22,7 +24,8 @@ export class NegociacaoController{
     adiciona():void{
         const negociacao = this.criaNegociacao();
         this.negociacoes.adiciona(negociacao);
-        this.negociacaoView.update(this.negociacoes)
+        this.negociacaoView.update(this.negociacoes);
+        this.mensagemView.update('Negociação adicionada com sucesso!');
         console.log(negociacao);
         this.limpaformulario();
     }
