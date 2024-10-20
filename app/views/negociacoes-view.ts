@@ -2,7 +2,7 @@ import { NegociacaoController } from "../controllers/negociacao-controller.js"
 import { Negociacoes } from "../models/negociacoes.js";
 import { View } from "./view.js";
 
-export class NegociacoesView extends View{
+export class NegociacoesView extends View<Negociacoes>{
     
 
     template(model : Negociacoes):string {
@@ -30,10 +30,4 @@ export class NegociacoesView extends View{
         `;
     }
       
-    //Aqui foi criado um método onde o elemento através do metodo innerHTML irá receber o template que foi criado acima, e emostrará dinamenicamente na tela.
-    update(model: Negociacoes) : void {
-        const template = this.template(model)
-        console.log(template)
-        this.elemento.innerHTML = template;
-    }
 }
