@@ -21,16 +21,15 @@ export class NegociacaoController{
         this.negociacaoView.update(this.negociacoes); //Aqui é chamado o método para renderizar a criação da tabela
     }
 
-    adiciona():void{
+    public  adiciona():void{
         const negociacao = this.criaNegociacao();
         this.negociacoes.adiciona(negociacao);
-        this.negociacaoView.update(this.negociacoes);
-        this.mensagemView.update('Negociação adicionada com sucesso!');
+        this.atualizaViews();
         console.log(negociacao);
         this.limpaformulario();
     }
 
-    criaNegociacao():Negociacao{
+    private criaNegociacao():Negociacao{
         const expReg = /-/g;
         const data = new Date(this.data.value.replace(expReg, ','));
         const quantidade = parseInt(this.quantidade.value);
@@ -38,10 +37,15 @@ export class NegociacaoController{
         return new Negociacao(data, quantidade, valor); 
     }
 
-    limpaformulario():void{
+    private limpaformulario():void{
         this.data.value = '';
         this.quantidade.value = '';
         this.valor.value = '';
         this.data.focus();
+    }
+
+    private atualizaViews():void{
+        this.negociacaoView.update(this.negociacoes);
+        this.mensagemView.update('Negociação adicionada com sucesso!');
     }
 }
